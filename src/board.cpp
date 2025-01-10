@@ -6,57 +6,60 @@
 
 Board::Board()
 {
-  // Shuffle the deck
-  deck.Shuffle();
+//   // Shuffle the deck
+//   deck.Shuffle();
 
-  // Populate the board stacks
-  boardStack_0.push_back(deck.DrawCard());
-  boardStack_0[0].Reveal();
+//   // Populate the board stacks
+//   boardStack_0.push_back(deck.DrawCard());
+//   boardStack_0[0].Reveal();
   
-  boardStack_1.push_back(deck.DrawCard());
-  boardStack_1.push_back(deck.DrawCard());
-  boardStack_1[1].Reveal();
+//   boardStack_1.push_back(deck.DrawCard());
+//   boardStack_1.push_back(deck.DrawCard());
+//   boardStack_1[1].Reveal();
 
-  boardStack_2.push_back(deck.DrawCard());
-  boardStack_2.push_back(deck.DrawCard());
-  boardStack_2.push_back(deck.DrawCard());
-  boardStack_2[2].Reveal();
+//   boardStack_2.push_back(deck.DrawCard());
+//   boardStack_2.push_back(deck.DrawCard());
+//   boardStack_2.push_back(deck.DrawCard());
+//   boardStack_2[2].Reveal();
 
-  boardStack_3.push_back(deck.DrawCard());
-  boardStack_3.push_back(deck.DrawCard());
-  boardStack_3.push_back(deck.DrawCard());
-  boardStack_3.push_back(deck.DrawCard());
-  boardStack_3[3].Reveal();
+//   boardStack_3.push_back(deck.DrawCard());
+//   boardStack_3.push_back(deck.DrawCard());
+//   boardStack_3.push_back(deck.DrawCard());
+//   boardStack_3.push_back(deck.DrawCard());
+//   boardStack_3[3].Reveal();
 
-  boardStack_4.push_back(deck.DrawCard());
-  boardStack_4.push_back(deck.DrawCard());
-  boardStack_4.push_back(deck.DrawCard());
-  boardStack_4.push_back(deck.DrawCard());
-  boardStack_4.push_back(deck.DrawCard());
-  boardStack_4[4].Reveal();
+//   boardStack_4.push_back(deck.DrawCard());
+//   boardStack_4.push_back(deck.DrawCard());
+//   boardStack_4.push_back(deck.DrawCard());
+//   boardStack_4.push_back(deck.DrawCard());
+//   boardStack_4.push_back(deck.DrawCard());
+//   boardStack_4[4].Reveal();
 
-  boardStack_5.push_back(deck.DrawCard());
-  boardStack_5.push_back(deck.DrawCard());
-  boardStack_5.push_back(deck.DrawCard());
-  boardStack_5.push_back(deck.DrawCard());
-  boardStack_5.push_back(deck.DrawCard());
-  boardStack_5.push_back(deck.DrawCard());
-  boardStack_5[5].Reveal();
+//   boardStack_5.push_back(deck.DrawCard());
+//   boardStack_5.push_back(deck.DrawCard());
+//   boardStack_5.push_back(deck.DrawCard());
+//   boardStack_5.push_back(deck.DrawCard());
+//   boardStack_5.push_back(deck.DrawCard());
+//   boardStack_5.push_back(deck.DrawCard());
+//   boardStack_5[5].Reveal();
 
-  boardStack_6.push_back(deck.DrawCard());
-  boardStack_6.push_back(deck.DrawCard());
-  boardStack_6.push_back(deck.DrawCard());
-  boardStack_6.push_back(deck.DrawCard());
-  boardStack_6.push_back(deck.DrawCard());
-  boardStack_6.push_back(deck.DrawCard());
-  boardStack_6.push_back(deck.DrawCard());
-  boardStack_6[6].Reveal();
+//   boardStack_6.push_back(deck.DrawCard());
+//   boardStack_6.push_back(deck.DrawCard());
+//   boardStack_6.push_back(deck.DrawCard());
+//   boardStack_6.push_back(deck.DrawCard());
+//   boardStack_6.push_back(deck.DrawCard());
+//   boardStack_6.push_back(deck.DrawCard());
+//   boardStack_6.push_back(deck.DrawCard());
+//   boardStack_6[6].Reveal();
 
-  // Put the rest in the draw pile
-  while (!deck.isEmpty()) {
-    drawPile.push_back(deck.DrawCard());
-    drawPile.back().Reveal();
-  }
+//   // Put the rest in the draw pile
+//   while (!deck.isEmpty()) {
+//     drawPile.push_back(deck.DrawCard());
+//     drawPile.back().Reveal();
+//   }
+    Card k('S', 'K');
+    k.Reveal();
+    drawPile.push_back(k);
 }
 
 void Board::DrawCardOrResetDrawPile()
@@ -118,17 +121,27 @@ void Board::AttemptMoveFromDiscardPile(int to) {
     
     // Can't move from empty discard pile
     if (discardPile.size() == 0) return;
-    
-    // TODO: What if the card is a king?
 
     // Get the "from" card
     Card& fromCard = discardPile[0];
 
+    if (fromCard.GetFace() == 'K') {
+        // If moving a king, ensure that the target stack is empty
+        std::vector<Card>& targetStack = GetSourceBoardStack(to);
+        if (targetStack.size() > 0) return;
+
+        // Checks passed; Move the card
+        targetStack.push_back(fromCard);
+        discardPile.pop_back();        
+        return;
+    }
+
+    // NOTE: Card is not a 'K'
+
     // In the "to" column, get the "bottom-most" revealed card
     std::vector<Card>& targetStack = GetSourceBoardStack(to);
     if (targetStack.size() == 0) {
-        // FIXME: Don't crash on moving to empty stack
-        GameAbort(std::string("Can't move from an empty stack!"));
+        return;
     }
     Card& toCard = targetStack[targetStack.size() - 1];
 
@@ -328,7 +341,7 @@ void Board::PrintBoard() const
         }
 
         // boardStack_1
-        if (boardStack_1.size() == 0) {
+        if (boardStack_1.size() == 0 && index == 0) {
             std::cout << "[" << std::setw(6) << '-' << "]";
         } else if (index >= boardStack_1.size()) {
             std::cout << " " << std::setw(6) << ' ' << " ";
@@ -339,7 +352,7 @@ void Board::PrintBoard() const
         }
 
         // boardStack_2
-        if (boardStack_2.size() == 0) {
+        if (boardStack_2.size() == 0 && index == 0) {
             std::cout << "[" << std::setw(6) << '-' << "]";
         } else if (index >= boardStack_2.size()) {
             std::cout << " " << std::setw(6) << ' ' << " ";
@@ -350,7 +363,7 @@ void Board::PrintBoard() const
         }
 
         // boardStack_3
-        if (boardStack_3.size() == 0) {
+        if (boardStack_3.size() == 0 && index == 0) {
             std::cout << "[" << std::setw(6) << '-' << "]";
         } else if (index >= boardStack_3.size()) {
             std::cout << " " << std::setw(6) << ' ' << " ";
@@ -361,7 +374,7 @@ void Board::PrintBoard() const
         }
 
         // boardStack_4
-        if (boardStack_4.size() == 0) {
+        if (boardStack_4.size() == 0 && index == 0) {
             std::cout << "[" << std::setw(6) << '-' << "]";
         } else if (index >= boardStack_4.size()) {
             std::cout << " " << std::setw(6) << ' ' << " ";
@@ -372,7 +385,7 @@ void Board::PrintBoard() const
         }
 
         // boardStack_5
-        if (boardStack_5.size() == 0) {
+        if (boardStack_5.size() == 0 && index == 0) {
             std::cout << "[" << std::setw(6) << '-' << "]";
         } else if (index >= boardStack_5.size()) {
             std::cout << " " << std::setw(6) << ' ' << " ";
@@ -383,7 +396,7 @@ void Board::PrintBoard() const
         }
 
         // boardStack_6
-        if (boardStack_6.size() == 0) {
+        if (boardStack_6.size() == 0 && index == 0) {
             std::cout << "[" << std::setw(6) << '-' << "]";
         } else if (index >= boardStack_6.size()) {
             std::cout << " " << std::setw(6) << ' ' << " ";
