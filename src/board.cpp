@@ -91,7 +91,27 @@ std::vector<Card>& Board::GetFoundation(const Card& c) {
     GameAbort(std::string("Invalid suit for foundation fetch: ") + c.GetSuit());
 }
 
-void Board::PromoteToFoundation(std::vector<Card> sourceBoardStack) {
+std::vector<Card> &Board::GetSourceBoardStack(int stackID)
+{
+    switch (stackID)
+    {
+        case 0: return discardPile;
+        case 1: return boardStack_0;
+        case 2: return boardStack_1;
+        case 3: return boardStack_2;
+        case 4: return boardStack_3;
+        case 5: return boardStack_4;
+        case 6: return boardStack_5;
+        case 7: return boardStack_6;
+    }
+
+    // TODO: Take this into account later
+    GameAbort(std::string("Invalid stack ID to promote: ") + std::to_string(stackID));
+}
+
+void Board::PromoteToFoundation(char option) {
+
+    std::vector<Card>& sourceBoardStack = GetSourceBoardStack(static_cast<int>(option - '0'));
 
     // Get the corresponding foundation
     std::vector<Card>& foundation = GetFoundation(sourceBoardStack.back());

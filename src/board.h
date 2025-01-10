@@ -15,7 +15,7 @@ public:
     void DrawCard();
     void ResetDrawPile();
 
-    void PromoteToFoundation(std::vector<Card>);
+    void PromoteToFoundation(char option);
 
     void PrintBoard() const;
 private:
@@ -30,6 +30,7 @@ private:
     std::vector<Card> foundation_D;
     std::vector<Card> foundation_H;
 
+    std::vector<Card>& GetSourceBoardStack(int);
     std::vector<Card> boardStack_0;
     std::vector<Card> boardStack_1;
     std::vector<Card> boardStack_2;
