@@ -1,7 +1,11 @@
 #include <iostream>
 
+#include "deck.h"
+
 int main() {
-  std::cout << "This works" << std::endl;
+  Deck deck;
+
+  deck.PrintDeck();
 
   return 0;
 }
