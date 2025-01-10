@@ -55,6 +55,7 @@ Board::Board()
   // Put the rest in the draw pile
   while (!deck.isEmpty()) {
     drawPile.push_back(deck.DrawCard());
+    drawPile.back().Reveal();
   }
 }
 
