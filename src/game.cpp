@@ -15,6 +15,7 @@ static void PrintMenu() {
 Game::Game() {
 
   Board board;
+  board.PrintBoard();
 
   char option;
   for(;;) {

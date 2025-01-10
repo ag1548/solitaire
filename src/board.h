@@ -7,7 +7,7 @@
 class Board
 {
 public:
-    Board();
+    explicit Board();
 
     void PrintBoard() const;
 private:

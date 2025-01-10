@@ -24,8 +24,6 @@ Card Deck::DrawCard()
 
     cards.pop_back();
 
-    std::cout << "Drew card: " << result << std::endl;
-
     return result;
 }
 
