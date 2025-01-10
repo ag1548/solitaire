@@ -95,9 +95,8 @@ void Board::MoveColumn() {
     int to;
     std::cin >> to;
 
-    // FIXME: Don't abort when to-column is the discard pile!
     if (to == 0) {
-        GameAbort(std::string("You can't move to the discard pile..."));
+        return;
     }
 
     if (from == 0) {
