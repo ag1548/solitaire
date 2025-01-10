@@ -159,8 +159,8 @@ void Board::AttemptMoveFromDiscardPile(int to) {
     }
 
     // Ensure that the "from" card is "one less" from the "to" card
-    int fromIndex = GetIndexOfFace(fromCard.GetFace());
-    int toIndex   = GetIndexOfFace(toCard.GetFace());
+    int fromIndex = GetIndexOf(FACES, fromCard.GetFace());
+    int toIndex   = GetIndexOf(FACES, toCard.GetFace());
     if (fromIndex + 1 != toIndex) {
         return;
     }
@@ -221,8 +221,8 @@ void Board::AttemptColumnMove(int from, int to) {
     }
 
     // Ensure that the "from" card is "one less" from the "to" card
-    int fromIndex = GetIndexOfFace(fromCard.GetFace());
-    int toIndex   = GetIndexOfFace(toCard.GetFace());
+    int fromIndex = GetIndexOf(FACES, fromCard.GetFace());
+    int toIndex   = GetIndexOf(FACES, toCard.GetFace());
     if (fromIndex + 1 != toIndex) {
         return;
     }
@@ -304,8 +304,8 @@ void Board::PromoteToFoundation(char option) {
     }
 
     // All the others
-    int indexOfFoundationTopFace = GetIndexOfFace(foundation.back().GetFace());
-    int indexOfCardFace          = GetIndexOfFace(sourceBoardStack.back().GetFace());
+    int indexOfFoundationTopFace = GetIndexOf(FACES, foundation.back().GetFace());
+    int indexOfCardFace          = GetIndexOf(FACES, sourceBoardStack.back().GetFace());
     if (indexOfFoundationTopFace == indexOfCardFace - 1) {
         foundation.push_back(sourceBoardStack.back());
         sourceBoardStack.pop_back();

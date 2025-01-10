@@ -1,23 +1,5 @@
 #include "card.h"
 
-int GetIndexOfSuit(const char &S) {
-    auto it = std::find(Suits.begin(), Suits.end(), S);
-    if (it == Suits.end()) {
-        return -1;
-    }
-
-    return std::distance(Suits.begin(), it);
-}
-
-int GetIndexOfFace(const char &F) {
-    auto it = std::find(Faces.begin(), Faces.end(), F);
-    if (it == Faces.end()) {
-        return -1;
-    }
-
-    return std::distance(Faces.begin(), it);
-}
-
 Card::Card(char suit, char face)
     : suit(suit),
       face(face),

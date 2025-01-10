@@ -23,15 +23,14 @@ const char FACE_J = 'J';
 const char FACE_Q = 'Q';
 const char FACE_K = 'K';
 
-const std::array<char, 4> Suits = {
+const std::array<char, 4> SUITS = {
     SUIT_S,
     SUIT_C,
     SUIT_H,
     SUIT_D,
 };
-int GetIndexOfSuit(const char &);
 
-const std::array<char, 13> Faces = {
+const std::array<char, 13> FACES = {
     FACE_A,
     FACE_2,
     FACE_3,
@@ -46,7 +45,17 @@ const std::array<char, 13> Faces = {
     FACE_Q,
     FACE_K,
 };
-int GetIndexOfFace(const char &);
+
+template <typename T>
+int GetIndexOf(const T &theArray, const char &C) {
+    auto it = std::find(theArray.begin(), theArray.end(), C);
+
+    if (it == theArray.end()) {
+        return -1;
+    }
+
+    return std::distance(theArray.begin(), it);
+}
 
 class Card {
 public:

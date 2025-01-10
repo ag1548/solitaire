@@ -5,8 +5,8 @@
 
 Deck::Deck() {
     cards.reserve(52);
-    std::for_each(Suits.begin(), Suits.end(), [&](char s) {
-        std::for_each(Faces.begin(), Faces.end(), [&](char f) {
+    std::for_each(SUITS.begin(), SUITS.end(), [&](char s) {
+        std::for_each(FACES.begin(), FACES.end(), [&](char f) {
             cards.emplace_back(s, f);
         });
     });
