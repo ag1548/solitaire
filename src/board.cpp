@@ -95,10 +95,6 @@ void Board::MoveColumn() {
     int to;
     std::cin >> to;
 
-    if (to == 0) {
-        return;
-    }
-
     if (from == 0) {
         // Move from the discard pile
         AttemptMoveFromDiscardPile(to);
@@ -161,6 +157,8 @@ void Board::AttemptMoveFromDiscardPile(int to) {
 
 void Board::AttemptColumnMove(int from, int to)
 {
+    if (from == to) return;    
+
     // TODO: The only card that can move to empty columns are kings
 
     // In the "from" column, get the "top-most" revealed card
