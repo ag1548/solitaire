@@ -27,7 +27,13 @@ Card Deck::DrawCard()
     return result;
 }
 
-void Deck::PrintDeck() const {
+bool Deck::isEmpty() const
+{
+    return cards.empty();
+}
+
+void Deck::PrintDeck() const
+{
     int index = 0;
     std::for_each(cards.begin(), cards.end(), [&](const Card& c){
         std::cout << "[" << std::setw(2) << index++ << "]: " << c;

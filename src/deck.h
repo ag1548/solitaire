@@ -13,6 +13,7 @@ public:
 
   Card DrawCard();
 
+  bool isEmpty() const;
   void PrintDeck() const;
 
 private:
