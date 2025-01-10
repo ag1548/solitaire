@@ -6,8 +6,8 @@
 static void PrintMenu(const Board& board) {
   std::cout << "***************************************************************" << std::endl
             << "Menu:" << std::endl
-            << "   q - exit" << std::endl
-            << "   p - print board" << std::endl;
+            << "   q - exit" << std::endl;
+            // << "   p - print board" << std::endl;
 
   if (board.DrawPileIsEmpty()) {
     std::cout << "   d - reset draw pile" << std::endl;
@@ -35,9 +35,9 @@ Game::Game() {
       case 'q':
         exit(0);
         break;
-      case 'p':
-        board.PrintBoard();
-        break;
+      // case 'p':
+      //   board.PrintBoard();
+      //   break;
       case 'd':
         board.DrawCardOrResetDrawPile();
         break;
