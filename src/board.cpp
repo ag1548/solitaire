@@ -83,13 +83,25 @@ void Board::ResetDrawPile()
 }
 
 void Board::MoveColumn() {
-    std::cout << "Move from which column? ";
     int from;
+    std::cout << "Move from which column? ";
     std::cin >> from;
+    while (!std::cin or not (from >= 0 && from <= 7)) {
+        std::cin.clear();
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        std::cout << "Move from which column? ";
+        std::cin >> from;
+    }
 
-    std::cout << "Move to which column? ";
     int to;
+    std::cout << "Move to which column? ";
     std::cin >> to;
+    while (!std::cin or not (from >= 0 && from <= 7)) {
+        std::cin.clear();
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        std::cout << "Move to which column? ";
+        std::cin >> to;
+    }
 
     if (from == 0) {
         // Move from the discard pile
