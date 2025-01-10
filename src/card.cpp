@@ -1,11 +1,19 @@
 #include "card.h"
 
-Card::Card(char suit, char face) {
-  this->suit = suit;
-  this->face = face;
+Card::Card(char suit, char face)
+: suit(suit)
+, face(face)
+, revealed(false)
+{
 }
 
 char Card::GetFace() const { return face; }
+
+void Card::Reveal() {
+  revealed = true;
+}
+
+bool Card::isRevealed() const { return revealed; }
 
 bool Card::operator==(const Card &other)
 {

@@ -11,24 +11,39 @@ Board::Board()
 
   // Populate the board stacks
   boardStack_0.push_back(deck.DrawCard());
+  boardStack_0[0].Reveal();
   
   boardStack_1.push_back(deck.DrawCard());
   boardStack_1.push_back(deck.DrawCard());
+  boardStack_1[0].Reveal();
+  boardStack_1[1].Reveal();
 
   boardStack_2.push_back(deck.DrawCard());
   boardStack_2.push_back(deck.DrawCard());
   boardStack_2.push_back(deck.DrawCard());
+  boardStack_2[0].Reveal();
+  boardStack_2[1].Reveal();
+  boardStack_2[2].Reveal();
 
   boardStack_3.push_back(deck.DrawCard());
   boardStack_3.push_back(deck.DrawCard());
   boardStack_3.push_back(deck.DrawCard());
   boardStack_3.push_back(deck.DrawCard());
+  boardStack_3[0].Reveal();
+  boardStack_3[1].Reveal();
+  boardStack_3[2].Reveal();
+  boardStack_3[3].Reveal();
 
   boardStack_4.push_back(deck.DrawCard());
   boardStack_4.push_back(deck.DrawCard());
   boardStack_4.push_back(deck.DrawCard());
   boardStack_4.push_back(deck.DrawCard());
   boardStack_4.push_back(deck.DrawCard());
+  boardStack_4[0].Reveal();
+  boardStack_4[1].Reveal();
+  boardStack_4[2].Reveal();
+  boardStack_4[3].Reveal();
+  boardStack_4[4].Reveal();
 
   boardStack_5.push_back(deck.DrawCard());
   boardStack_5.push_back(deck.DrawCard());
@@ -36,6 +51,12 @@ Board::Board()
   boardStack_5.push_back(deck.DrawCard());
   boardStack_5.push_back(deck.DrawCard());
   boardStack_5.push_back(deck.DrawCard());
+  boardStack_5[0].Reveal();
+  boardStack_5[1].Reveal();
+  boardStack_5[2].Reveal();
+  boardStack_5[3].Reveal();
+  boardStack_5[4].Reveal();
+  boardStack_5[5].Reveal();
 
   boardStack_6.push_back(deck.DrawCard());
   boardStack_6.push_back(deck.DrawCard());
@@ -44,6 +65,13 @@ Board::Board()
   boardStack_6.push_back(deck.DrawCard());
   boardStack_6.push_back(deck.DrawCard());
   boardStack_6.push_back(deck.DrawCard());
+  boardStack_6[0].Reveal();
+  boardStack_6[1].Reveal();
+  boardStack_6[2].Reveal();
+  boardStack_6[3].Reveal();
+  boardStack_6[4].Reveal();
+  boardStack_6[5].Reveal();
+  boardStack_6[6].Reveal();
 
   // Put the rest in the draw pile
   while (!deck.isEmpty()) {
@@ -186,78 +214,78 @@ void Board::PrintBoard() const
         // boardStack_0
         if (boardStack_0.size() == 0) {
             std::cout << "[" << std::setw(6) << '-' << "]";
-        } else if (index < boardStack_0.size() - 1) {
-            std::cout << "[" << std::setw(6) << '*' << "]";
-        } else if (index == boardStack_0.size() - 1) {
-            std::cout << "[" << boardStack_0.back() << "]";
-        } else {
+        } else if (index >= boardStack_0.size()) {
             std::cout << " " << std::setw(6) << ' ' << " ";
+        } else if (boardStack_0[index].isRevealed()) {
+            std::cout << "[" << boardStack_0[index] << "]";
+        } else if (!boardStack_0[index].isRevealed()) {
+            std::cout << "[" << std::setw(6) << '*' << "]";
         }
 
         // boardStack_1
         if (boardStack_1.size() == 0) {
             std::cout << "[" << std::setw(6) << '-' << "]";
-        } else if (index < boardStack_1.size() - 1) {
-            std::cout << "[" << std::setw(6) << '*' << "]";
-        } else if (index == boardStack_1.size() - 1) {
-            std::cout << "[" << boardStack_1.back() << "]";
-        } else {
+        } else if (index >= boardStack_1.size()) {
             std::cout << " " << std::setw(6) << ' ' << " ";
+        } else if (boardStack_1[index].isRevealed()) {
+            std::cout << "[" << boardStack_1[index] << "]";
+        } else if (!boardStack_1[index].isRevealed()) {
+            std::cout << "[" << std::setw(6) << '*' << "]";
         }
 
         // boardStack_2
         if (boardStack_2.size() == 0) {
             std::cout << "[" << std::setw(6) << '-' << "]";
-        } else if (index < boardStack_2.size() - 1) {
-            std::cout << "[" << std::setw(6) << '*' << "]";
-        } else if (index == boardStack_2.size() - 1) {
-            std::cout << "[" << boardStack_2.back() << "]";
-        } else {
+        } else if (index >= boardStack_2.size()) {
             std::cout << " " << std::setw(6) << ' ' << " ";
+        } else if (boardStack_2[index].isRevealed()) {
+            std::cout << "[" << boardStack_2[index] << "]";
+        } else if (!boardStack_2[index].isRevealed()) {
+            std::cout << "[" << std::setw(6) << '*' << "]";
         }
 
         // boardStack_3
         if (boardStack_3.size() == 0) {
             std::cout << "[" << std::setw(6) << '-' << "]";
-        } else if (index < boardStack_3.size() - 1) {
-            std::cout << "[" << std::setw(6) << '*' << "]";
-        } else if (index == boardStack_3.size() - 1) {
-            std::cout << "[" << boardStack_3.back() << "]";
-        } else {
+        } else if (index >= boardStack_3.size()) {
             std::cout << " " << std::setw(6) << ' ' << " ";
+        } else if (boardStack_3[index].isRevealed()) {
+            std::cout << "[" << boardStack_3[index] << "]";
+        } else if (!boardStack_3[index].isRevealed()) {
+            std::cout << "[" << std::setw(6) << '*' << "]";
         }
 
         // boardStack_4
         if (boardStack_4.size() == 0) {
             std::cout << "[" << std::setw(6) << '-' << "]";
-        } else if (index < boardStack_4.size() - 1) {
-            std::cout << "[" << std::setw(6) << '*' << "]";
-        } else if (index == boardStack_4.size() - 1) {
-            std::cout << "[" << boardStack_4.back() << "]";
-        } else {
+        } else if (index >= boardStack_4.size()) {
             std::cout << " " << std::setw(6) << ' ' << " ";
+        } else if (boardStack_4[index].isRevealed()) {
+            std::cout << "[" << boardStack_4[index] << "]";
+        } else if (!boardStack_4[index].isRevealed()) {
+            std::cout << "[" << std::setw(6) << '*' << "]";
         }
 
         // boardStack_5
         if (boardStack_5.size() == 0) {
             std::cout << "[" << std::setw(6) << '-' << "]";
-        } else if (index < boardStack_5.size() - 1) {
-            std::cout << "[" << std::setw(6) << '*' << "]";
-        } else if (index == boardStack_5.size() - 1) {
-            std::cout << "[" << boardStack_5.back() << "]";
-        } else {
+        } else if (index >= boardStack_5.size()) {
             std::cout << " " << std::setw(6) << ' ' << " ";
+        } else if (boardStack_5[index].isRevealed()) {
+            std::cout << "[" << boardStack_5[index] << "]";
+        } else if (!boardStack_5[index].isRevealed()) {
+            std::cout << "[" << std::setw(6) << '*' << "]";
         }
 
         // boardStack_6
         if (boardStack_6.size() == 0) {
             std::cout << "[" << std::setw(6) << '-' << "]";
-        } else if (index < boardStack_6.size() - 1) {
-            std::cout << "[" << std::setw(6) << '*' << "]";
-        } else if (index == boardStack_6.size() - 1) {
-            std::cout << "[" << boardStack_6.back() << "]";
-        } else {
+        } else if (index >= boardStack_6.size()) {
             std::cout << " " << std::setw(6) << ' ' << " ";
+        } else if (boardStack_6[index].isRevealed()) {
+            std::cout << "[" << boardStack_6[index] << "]";
+        } else if (!boardStack_6[index].isRevealed()) {
+            std::cout << "[" << std::setw(6) << '*' << "]";
         }
 
         if (

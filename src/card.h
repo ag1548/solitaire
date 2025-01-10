@@ -24,11 +24,16 @@ public:
   char GetSuit() const;
   char GetFace() const;
 
+  void Reveal();
+  bool isRevealed() const;
+
   bool operator==(const Card& other);
 
 private:
   char suit;
   char face;
+
+  bool revealed;
 };
 
 std::ostream &operator<<(std::ostream &os, const Card &card);
