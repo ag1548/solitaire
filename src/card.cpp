@@ -18,3 +18,21 @@ std::ostream &operator<<(std::ostream &os, const Card &card) {
   os << card.GetFace() << " of " << card.GetSuit();
   return os;
 }
+
+int GetIndexOfSuit(char s) {
+  auto it = std::find(Suits.begin(), Suits.end(), s);
+  if (it == Suits.end()) {
+    return -1;
+  }
+
+  return std::distance(Suits.begin(), it);
+}
+
+int GetIndexOfFace(char f) {
+  auto it = std::find(Faces.begin(), Faces.end(), f);
+  if (it == Faces.end()) {
+    return -1;
+  }
+
+  return std::distance(Faces.begin(), it);
+}

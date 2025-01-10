@@ -1,5 +1,6 @@
 #pragma once
 
+#include <algorithm>
 #include <array>
 #include <iostream>
 
@@ -9,10 +10,12 @@ const std::array<char, 4> Suits = {
     'H',
     'D',
 };
+int GetIndexOfSuit(char s);
 
 const std::array<char, 13> Faces = {
     'A', '2', '3', '4', '5', '6', '7', '8', '9', '0', 'J', 'Q', 'K',
 };
+int GetIndexOfFace(char f);
 
 class Card {
 public:
