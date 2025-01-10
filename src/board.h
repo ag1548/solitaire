@@ -15,6 +15,8 @@ public:
     void DrawCard();
     void ResetDrawPile();
 
+    void MoveColumn();
+
     void PromoteToFoundation(char option);
 
     void PrintBoard() const;
@@ -38,4 +40,7 @@ private:
     std::vector<Card> boardStack_4;
     std::vector<Card> boardStack_5;
     std::vector<Card> boardStack_6;
+
+    void RevealTopMostCard(std::vector<Card>&);
+    void AttemptColumnMove(int, int);
 };

@@ -23,6 +23,7 @@ public:
 
   char GetSuit() const;
   char GetFace() const;
+  bool IsDarkCard() const;
 
   void Reveal();
   bool isRevealed() const;

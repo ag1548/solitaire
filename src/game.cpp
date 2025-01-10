@@ -15,7 +15,8 @@ static void PrintMenu(const Board& board) {
     std::cout << "   d - draw card" << std::endl;
   }
 
-  std::cout << "   0-7 - Promote to foundation" << std::endl;
+  std::cout << "   0-7 - Promote to foundation" << std::endl
+            << "   m - Move a card (or stack of cards)" << std::endl;
 }
 
 Game::Game() {
@@ -37,6 +38,9 @@ Game::Game() {
         break;
       case 'd':
         board.DrawCardOrResetDrawPile();
+        break;
+      case 'm':
+        board.MoveColumn();
         break;
       default:
         if (option >= '0' and option <= '9') {

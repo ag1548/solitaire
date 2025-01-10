@@ -9,6 +9,11 @@ Card::Card(char suit, char face)
 
 char Card::GetFace() const { return face; }
 
+bool Card::IsDarkCard() const
+{
+  return suit == 'S' or suit == 'C';
+}
+
 void Card::Reveal() {
   revealed = true;
 }

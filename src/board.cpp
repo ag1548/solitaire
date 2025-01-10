@@ -83,6 +83,82 @@ void Board::ResetDrawPile()
     discardPile.clear();
 }
 
+void Board::MoveColumn() {
+    std::cout << "Move from which column? ";
+    int from;
+    std::cin >> from;
+
+    std::cout << "Move to which column? ";
+    int to;
+    std::cin >> to;
+
+    // FIXME: Don't abort when to-column is the discard pile!
+    if (to == 0) {
+        GameAbort(std::string("You can't move to the discard pile..."));
+    }
+
+    AttemptColumnMove(from, to);
+}
+
+void Board::RevealTopMostCard(std::vector<Card> &sourceBoardStack)
+{
+    // Reveal the top most card of the boardStack
+    // NOTE: Cards in the draw/discard pile are already revealed
+    if (sourceBoardStack.size() > 0) {
+        sourceBoardStack.back().Reveal();
+    }
+}
+
+void Board::AttemptColumnMove(int from, int to)
+{
+
+    // TODO: This is different if moving from the discard pile
+    // TODO: The only card that can move to empty columns are kings
+
+    // In the "from" column, get the "top-most" revealed card
+    std::vector<Card>& sourceStack = GetSourceBoardStack(from);
+    if (sourceStack.size() == 0) {
+        // FIXME: Don't crash on moving from empty stack
+        GameAbort(std::string("Can't move from an empty stack!"));
+    }
+    int sourceIndex = 0;
+    while (!sourceStack[sourceIndex].isRevealed()) {
+        sourceIndex++;
+    }
+    Card& fromCard = sourceStack[sourceIndex];
+
+    // In the "to" column, get the "bottom-most" revealed card
+    std::vector<Card>& targetStack = GetSourceBoardStack(to);
+    if (targetStack.size() == 0) {
+        // FIXME: Don't crash on moving to empty stack
+        GameAbort(std::string("Can't move from an empty stack!"));
+    }
+    Card& toCard = targetStack[targetStack.size() - 1];
+
+    // Ensure that they are of opposite suit before the move'
+    if (fromCard.IsDarkCard() == toCard.IsDarkCard()) {
+      return;
+    }
+
+    // Ensure that the "from" card is one number down from the "to" card
+    int fromIndex = GetIndexOfFace(fromCard.GetFace());
+    int toIndex = GetIndexOfFace(toCard.GetFace());
+    if (fromIndex + 1 != toIndex) {
+      return;
+    }
+
+    // Move the column
+    int numberMoved = 0;
+    std::for_each(sourceStack.begin() + sourceIndex, sourceStack.end(), [&](Card c){
+        numberMoved++;
+        targetStack.push_back(c);
+    });
+    while(numberMoved--) sourceStack.pop_back();
+
+    // Reveal topmost card
+    RevealTopMostCard(sourceStack);
+}
+
 bool Board::DrawPileIsEmpty() const
 {
     return drawPile.empty();
@@ -138,15 +214,13 @@ void Board::PromoteToFoundation(char option) {
         }
     }
 
-    // Reveal the top most card of the boardStack
-    // NOTE: Cards in the draw/discard pile are already revealed
-    if (sourceBoardStack.size() > 0) {
-        sourceBoardStack.back().Reveal();
-    }
+    RevealTopMostCard(sourceBoardStack);
 }
 
 void Board::PrintBoard() const
 {
+
+    std::cout << std::setw(8) << " " << std::setw(8) << "[c0]" << std::endl;
 
     // drawPile
     if (drawPile.size() > 0) {
@@ -193,11 +267,21 @@ void Board::PrintBoard() const
 
     std::cout << std::endl << std::endl;
 
+    // Column numbers
+    std::cout << std::setw(8) << "[c1]"
+              << std::setw(8) << "[c2]"
+              << std::setw(8) << "[c3]"
+              << std::setw(8) << "[c4]"
+              << std::setw(8) << "[c5]"
+              << std::setw(8) << "[c6]"
+              << std::setw(8) << "[c7]"
+              << std::endl;
+
     int index = 0;
     for (;;) {
 
         // boardStack_0
-        if (boardStack_0.size() == 0) {
+        if (boardStack_0.size() == 0 && index == 0) {
             std::cout << "[" << std::setw(6) << '-' << "]";
         } else if (index >= boardStack_0.size()) {
             std::cout << " " << std::setw(6) << ' ' << " ";
