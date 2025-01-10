@@ -119,7 +119,7 @@ void Board::RevealTopMostCard(std::vector<Card> &sourceBoardStack)
 void Board::AttemptMoveFromDiscardPile(int to) {
     
     // Can't move from empty discard pile
-    if (discardPile.size() == 0) return;
+    if (discardPile.size() == 0 or to == 0) return;
 
     // Get the "from" card
     Card& fromCard = discardPile[0];
