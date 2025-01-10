@@ -254,7 +254,7 @@ std::vector<Card> &Board::GetSourceBoardStack(int stackID) {
     }
 
     // TODO: Take this into account
-    GameAbort(std::string("Invalid stack ID to promote: ") + std::to_string(stackID));
+    GameAbort(std::string("Invalid stack for board stack fetch: ") + std::to_string(stackID));
 }
 
 void Board::PromoteToFoundation(char option) {
