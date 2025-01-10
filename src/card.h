@@ -18,11 +18,12 @@ class Card {
 public:
   Card(char, char);
 
-  friend std::ostream &operator<<(std::ostream &os, const Card &card) {
-    return os << card.face << " of " << card.suit;
-  }
+  char GetSuit() const;
+  char GetFace() const;
 
 private:
   char suit;
   char face;
 };
+
+std::ostream &operator<<(std::ostream &os, const Card &card);
