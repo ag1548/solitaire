@@ -17,6 +17,5 @@ public:
   void PrintDeck() const;
 
 private:
-  std::minstd_rand0 rng;
   std::vector<Card> cards;
 };

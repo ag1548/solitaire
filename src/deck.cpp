@@ -4,8 +4,6 @@
 #include "deck.h"
 
 Deck::Deck() {
-  rng = std::default_random_engine {};
-
   cards.reserve(52);
   std::for_each(Suits.begin(), Suits.end(), [&](char s) {
     std::for_each(Faces.begin(), Faces.end(), [&](char f) {
@@ -15,7 +13,9 @@ Deck::Deck() {
 }
 
 void Deck::Shuffle() {
-    std::ranges::shuffle(cards, rng);
+    std::random_device rd;
+    std::mt19937 gen {rd()};
+    std::ranges::shuffle(cards, gen);
 }
 
 Card Deck::DrawCard()
