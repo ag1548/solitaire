@@ -21,6 +21,8 @@ public:
   char GetSuit() const;
   char GetFace() const;
 
+  bool operator==(const Card& other);
+
 private:
   char suit;
   char face;
