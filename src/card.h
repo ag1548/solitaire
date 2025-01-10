@@ -29,7 +29,7 @@ const std::array<char, 4> Suits = {
     SUIT_H,
     SUIT_D,
 };
-int GetIndexOfSuit(char s);
+int GetIndexOfSuit(const char &);
 
 const std::array<char, 13> Faces = {
     FACE_A,
@@ -46,7 +46,7 @@ const std::array<char, 13> Faces = {
     FACE_Q,
     FACE_K,
 };
-int GetIndexOfFace(char f);
+int GetIndexOfFace(const char &);
 
 class Card {
 public:
