@@ -114,7 +114,7 @@ void Board::AttemptMoveFromDiscardPile(int to) {
     if (discardPile.size() == 0 or to == 0) return;
 
     // Get the "from" card
-    Card& fromCard = discardPile[0];
+    Card& fromCard = discardPile.back();
 
     if (fromCard.GetFace() == 'K') {
         // If moving a king, ensure that the target stack is empty
