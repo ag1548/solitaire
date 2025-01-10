@@ -3,26 +3,31 @@
 #include "board.h"
 #include "game.h"
 
-static void PrintMenu() {
+static void PrintMenu(const Board& board) {
   std::cout << "***************************************************************" << std::endl
             << "Menu:" << std::endl
             << "   q - exit" << std::endl
             << "   p - print board" << std::endl;
+
+  if (board.DrawPileIsEmpty()) {
+    std::cout << "   d - reset draw pile" << std::endl;
+  } else {
+    std::cout << "   d - draw card" << std::endl;
+  }
+
             // << "   s - shuffle" << std::endl
-            // << "   d - draw card" << std::endl;
 }
 
 Game::Game() {
 
   Board board;
-  board.PrintBoard();
-
   char option;
   for(;;) {
-    PrintMenu();
+    system("clear");
+    board.PrintBoard();
+    PrintMenu(board);
 
     std::cin >> option;
-
     switch (option) {
       case 'q':
         exit(0);
@@ -34,9 +39,9 @@ Game::Game() {
     //     deck.Shuffle();
     //     deck.PrintBoard();
     //     break;
-    //   case 'd':
-    //     board.DrawCard();
-    //     break;
+      case 'd':
+        board.DrawCardOrResetDrawPile();
+        break;
       default:
         break;
     }

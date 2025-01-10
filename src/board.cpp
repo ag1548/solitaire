@@ -45,13 +45,39 @@ Board::Board()
   boardStack_6.push_back(deck.DrawCard());
   boardStack_6.push_back(deck.DrawCard());
 
-  // Put a card in the discard pile
-  discardPile.push_back(deck.DrawCard());
-
   // Put the rest in the draw pile
   while (!deck.isEmpty()) {
     drawPile.push_back(deck.DrawCard());
   }
+}
+
+void Board::DrawCardOrResetDrawPile()
+{
+    if (DrawPileIsEmpty()) {
+        ResetDrawPile();
+    } else {
+        DrawCard();
+        PrintBoard();
+    }
+}
+
+void Board::DrawCard()
+{
+    discardPile.push_back(drawPile.back());
+    drawPile.pop_back();
+}
+
+void Board::ResetDrawPile()
+{
+    std::for_each(discardPile.rbegin(), discardPile.rend(), [&](Card c){
+        drawPile.push_back(c);
+    });
+    discardPile.clear();
+}
+
+bool Board::DrawPileIsEmpty() const
+{
+    return drawPile.empty();
 }
 
 std::vector<Card>& Board::GetFoundation(const Card& c) {
