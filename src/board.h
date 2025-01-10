@@ -42,5 +42,6 @@ private:
     std::vector<Card> boardStack_6;
 
     void RevealTopMostCard(std::vector<Card>&);
+    void AttemptMoveFromDiscardPile(int);
     void AttemptColumnMove(int, int);
 };

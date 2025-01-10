@@ -97,7 +97,12 @@ void Board::MoveColumn() {
         GameAbort(std::string("You can't move to the discard pile..."));
     }
 
-    AttemptColumnMove(from, to);
+    if (from == 0) {
+        // Move from the discard pile
+        AttemptMoveFromDiscardPile(to);
+    } else {
+        AttemptColumnMove(from, to);
+    }
 }
 
 void Board::RevealTopMostCard(std::vector<Card> &sourceBoardStack)
@@ -109,10 +114,41 @@ void Board::RevealTopMostCard(std::vector<Card> &sourceBoardStack)
     }
 }
 
+void Board::AttemptMoveFromDiscardPile(int to) {
+    
+    // Can't move from empty discard pile
+    if (discardPile.size() == 0) return;
+    
+    // TODO: What if the card is a king?
+
+    // Get the "from" card
+    Card& fromCard = discardPile[0];
+
+    // In the "to" column, get the "bottom-most" revealed card
+    std::vector<Card>& targetStack = GetSourceBoardStack(to);
+    if (targetStack.size() == 0) {
+        // FIXME: Don't crash on moving to empty stack
+        GameAbort(std::string("Can't move from an empty stack!"));
+    }
+    Card& toCard = targetStack[targetStack.size() - 1];
+
+    // Ensure that the moving card is opposite color
+    if (fromCard.IsDarkCard() == toCard.IsDarkCard()) return;
+
+    // Ensure that the "from" card is "one less" from the "to" card
+    int fromIndex = GetIndexOfFace(fromCard.GetFace());
+    int toIndex = GetIndexOfFace(toCard.GetFace());
+    if (fromIndex + 1 != toIndex) {
+      return;
+    }
+
+    // Checks passed; Move the card
+    targetStack.push_back(fromCard);
+    discardPile.pop_back();
+}
+
 void Board::AttemptColumnMove(int from, int to)
 {
-
-    // TODO: This is different if moving from the discard pile
     // TODO: The only card that can move to empty columns are kings
 
     // In the "from" column, get the "top-most" revealed card
@@ -140,7 +176,7 @@ void Board::AttemptColumnMove(int from, int to)
       return;
     }
 
-    // Ensure that the "from" card is one number down from the "to" card
+    // Ensure that the "from" card is "one less" from the "to" card
     int fromIndex = GetIndexOfFace(fromCard.GetFace());
     int toIndex = GetIndexOfFace(toCard.GetFace());
     if (fromIndex + 1 != toIndex) {
