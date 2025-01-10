@@ -1,5 +1,6 @@
 #include <algorithm>
 #include <iomanip>
+#include <random>
 
 #include "deck.h"
 
