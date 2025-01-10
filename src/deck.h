@@ -1,21 +1,21 @@
 #pragma once
 
-#include <vector>
 #include <random>
+#include <vector>
 
 #include "card.h"
 
 class Deck {
 public:
-  Deck();
+    Deck();
 
-  void Shuffle();
+    void Shuffle();
 
-  Card DrawCard();
+    Card DrawCard();
 
-  bool isEmpty() const;
-  void PrintDeck() const;
+    bool isEmpty() const;
+    void PrintDeck() const;
 
 private:
-  std::vector<Card> cards;
+    std::vector<Card> cards;
 };

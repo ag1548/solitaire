@@ -3,6 +3,6 @@
 #include "game.h"
 
 int main() {
-  Game g;
-  return 0;
+    Game g;
+    return 0;
 }
