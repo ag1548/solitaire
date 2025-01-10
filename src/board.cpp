@@ -13,6 +13,13 @@ Board::Board() {
     //       according to the logic below.
 
     // Establish references to all the boards' bottom stacks
+    foundationStacks = {
+        foundation_S,
+        foundation_C,
+        foundation_D,
+        foundation_H,
+    };
+
     boardStacks = {
         boardStack_0,
         boardStack_1,
@@ -315,32 +322,14 @@ void Board::PrintBoard() const {
 
     std::cout << std::setw(8) << " ";
 
-    // foundation_S
-    if (foundation_S.size() > 0) {
-        std::cout << "[" << foundation_S.back() << "]";
-    } else {
-        std::cout << "[" << std::setw(6) << '-' << "]";
-    }
-
-    // foundation_C
-    if (foundation_C.size() > 0) {
-        std::cout << "[" << foundation_C.back() << "]";
-    } else {
-        std::cout << "[" << std::setw(6) << '-' << "]";
-    }
-
-    // foundation_D
-    if (foundation_D.size() > 0) {
-        std::cout << "[" << foundation_D.back() << "]";
-    } else {
-        std::cout << "[" << std::setw(6) << '-' << "]";
-    }
-    // foundation_H
-    if (foundation_H.size() > 0) {
-        std::cout << "[" << foundation_H.back() << "]";
-    } else {
-        std::cout << "[" << std::setw(6) << '-' << "]";
-    }
+    // Render foundations
+    std::for_each(foundationStacks.begin(), foundationStacks.end(), [&](auto s) {
+        if (s.get().size() > 0) {
+            std::cout << "[" << s.get().back() << "]";
+        } else {
+            std::cout << "[" << std::setw(6) << '-' << "]";
+        }
+    });
 
     std::cout << std::endl << std::endl;
 
