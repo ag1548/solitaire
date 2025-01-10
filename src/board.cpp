@@ -42,15 +42,11 @@ Board::Board() {
 }
 
 void Board::DrawCardOrResetDrawPile() {
-    if (DrawPileIsEmpty()) {
+    if (drawPile.empty()) {
         ResetDrawPile();
     } else {
         DrawCard();
     }
-}
-
-bool Board::DrawPileIsEmpty() const {
-    return drawPile.empty();
 }
 
 void Board::DrawCard() {
