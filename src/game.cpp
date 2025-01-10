@@ -29,6 +29,7 @@ Game::Game() {
     board.PrintBoard();
     PrintMenu(board);
 
+    std::cout << ">>> ";
     std::cin >> option;
     switch (option) {
       case 'q':
