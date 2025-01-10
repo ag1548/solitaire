@@ -10,8 +10,6 @@ public:
     explicit Board();
 
     void DrawCardOrResetDrawPile();
-    bool DrawPileIsEmpty() const;
-    void DrawCard();
     void ResetDrawPile();
 
     void MoveColumn();

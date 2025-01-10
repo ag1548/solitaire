@@ -45,13 +45,9 @@ void Board::DrawCardOrResetDrawPile() {
     if (drawPile.empty()) {
         ResetDrawPile();
     } else {
-        DrawCard();
+        discardPile.push_back(drawPile.back());
+        drawPile.pop_back();
     }
-}
-
-void Board::DrawCard() {
-    discardPile.push_back(drawPile.back());
-    drawPile.pop_back();
 }
 
 void Board::ResetDrawPile() {
