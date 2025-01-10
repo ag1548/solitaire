@@ -9,7 +9,7 @@ public:
 
   void Shuffle();
 
-  void PrintDeck();
+  void PrintDeck() const;
 
 private:
   std::minstd_rand0 rng;

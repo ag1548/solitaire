@@ -17,9 +17,9 @@ void Deck::Shuffle() {
     std::ranges::shuffle(cards, rng);
 }
 
-void Deck::PrintDeck() {
+void Deck::PrintDeck() const {
     int index = 0;
-    std::for_each(cards.begin(), cards.end(), [&](Card c){
+    std::for_each(cards.begin(), cards.end(), [&](const Card& c){
         std::cout << "[" << index++ << "]: " << c << std::endl;
     });
 }
