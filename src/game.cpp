@@ -45,7 +45,7 @@ Game::Game() {
         board.MoveColumn();
         break;
       default:
-        if (option >= '0' and option <= '9') {
+        if (option >= '0' and option <= '7') {
           board.PromoteToFoundation(option);
         }
         break;
