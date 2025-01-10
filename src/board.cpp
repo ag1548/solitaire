@@ -436,5 +436,9 @@ void Board::PrintBoard() const
         index++;
     }
 
+    while (index++ <= 13) {
+        std::cout << std::endl;
+    }
+
     std::cout << std::endl;
 }
