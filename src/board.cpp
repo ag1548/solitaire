@@ -276,8 +276,4 @@ void Board::PrintBoard() const
     }
 
     std::cout << std::endl;
-
-    // std::for_each(boardStack_6.begin(), boardStack_6.end(), [&](const Card& c){
-    //     std::cout << c << std::endl;
-    // });
 }
