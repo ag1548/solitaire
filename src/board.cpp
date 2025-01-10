@@ -15,23 +15,17 @@ Board::Board()
   
   boardStack_1.push_back(deck.DrawCard());
   boardStack_1.push_back(deck.DrawCard());
-  boardStack_1[0].Reveal();
   boardStack_1[1].Reveal();
 
   boardStack_2.push_back(deck.DrawCard());
   boardStack_2.push_back(deck.DrawCard());
   boardStack_2.push_back(deck.DrawCard());
-  boardStack_2[0].Reveal();
-  boardStack_2[1].Reveal();
   boardStack_2[2].Reveal();
 
   boardStack_3.push_back(deck.DrawCard());
   boardStack_3.push_back(deck.DrawCard());
   boardStack_3.push_back(deck.DrawCard());
   boardStack_3.push_back(deck.DrawCard());
-  boardStack_3[0].Reveal();
-  boardStack_3[1].Reveal();
-  boardStack_3[2].Reveal();
   boardStack_3[3].Reveal();
 
   boardStack_4.push_back(deck.DrawCard());
@@ -39,10 +33,6 @@ Board::Board()
   boardStack_4.push_back(deck.DrawCard());
   boardStack_4.push_back(deck.DrawCard());
   boardStack_4.push_back(deck.DrawCard());
-  boardStack_4[0].Reveal();
-  boardStack_4[1].Reveal();
-  boardStack_4[2].Reveal();
-  boardStack_4[3].Reveal();
   boardStack_4[4].Reveal();
 
   boardStack_5.push_back(deck.DrawCard());
@@ -51,11 +41,6 @@ Board::Board()
   boardStack_5.push_back(deck.DrawCard());
   boardStack_5.push_back(deck.DrawCard());
   boardStack_5.push_back(deck.DrawCard());
-  boardStack_5[0].Reveal();
-  boardStack_5[1].Reveal();
-  boardStack_5[2].Reveal();
-  boardStack_5[3].Reveal();
-  boardStack_5[4].Reveal();
   boardStack_5[5].Reveal();
 
   boardStack_6.push_back(deck.DrawCard());
@@ -65,12 +50,6 @@ Board::Board()
   boardStack_6.push_back(deck.DrawCard());
   boardStack_6.push_back(deck.DrawCard());
   boardStack_6.push_back(deck.DrawCard());
-  boardStack_6[0].Reveal();
-  boardStack_6[1].Reveal();
-  boardStack_6[2].Reveal();
-  boardStack_6[3].Reveal();
-  boardStack_6[4].Reveal();
-  boardStack_6[5].Reveal();
   boardStack_6[6].Reveal();
 
   // Put the rest in the draw pile
