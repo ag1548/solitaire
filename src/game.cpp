@@ -14,8 +14,6 @@ static void PrintMenu(const Board& board) {
   } else {
     std::cout << "   d - draw card" << std::endl;
   }
-
-            // << "   s - shuffle" << std::endl
 }
 
 Game::Game() {
@@ -35,10 +33,6 @@ Game::Game() {
       case 'p':
         board.PrintBoard();
         break;
-    //   case 's':
-    //     deck.Shuffle();
-    //     deck.PrintBoard();
-    //     break;
       case 'd':
         board.DrawCardOrResetDrawPile();
         break;
