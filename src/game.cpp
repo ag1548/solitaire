@@ -13,7 +13,7 @@ Game::Game() {
 
   Deck deck;
 
-  char option = 'z';
+  char option = '@';
 
   while (option != '0') {
     PrintMenu();
