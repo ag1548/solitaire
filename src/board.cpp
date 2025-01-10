@@ -60,6 +60,10 @@ Board::Board()
     Card k('S', 'K');
     k.Reveal();
     drawPile.push_back(k);
+
+    Card q('D', 'Q');
+    q.Reveal();
+    boardStack_6.push_back(q);
 }
 
 void Board::DrawCardOrResetDrawPile()
@@ -157,15 +161,13 @@ void Board::AttemptMoveFromDiscardPile(int to) {
 
 void Board::AttemptColumnMove(int from, int to)
 {
-    if (from == to) return;    
-
-    // TODO: The only card that can move to empty columns are kings
+    if (from == to) return;
+    if (to == 0) return;
 
     // In the "from" column, get the "top-most" revealed card
     std::vector<Card>& sourceStack = GetSourceBoardStack(from);
     if (sourceStack.size() == 0) {
-        // FIXME: Don't crash on moving from empty stack
-        GameAbort(std::string("Can't move from an empty stack!"));
+        return;
     }
     int sourceIndex = 0;
     while (!sourceStack[sourceIndex].isRevealed()) {
@@ -176,8 +178,18 @@ void Board::AttemptColumnMove(int from, int to)
     // In the "to" column, get the "bottom-most" revealed card
     std::vector<Card>& targetStack = GetSourceBoardStack(to);
     if (targetStack.size() == 0) {
-        // FIXME: Don't crash on moving to empty stack
-        GameAbort(std::string("Can't move from an empty stack!"));
+        // The only card that can move to empty columns are kings
+        if (fromCard.GetFace() != 'K') return;
+
+        // Move the whole column to the empty one
+        int numberMoved = 0;
+        std::for_each(sourceStack.begin() + sourceIndex, sourceStack.end(), [&](Card c){
+            numberMoved++;
+            targetStack.push_back(c);
+        });
+        while(numberMoved--) sourceStack.pop_back();
+        RevealTopMostCard(sourceStack);
+        return;
     }
     Card& toCard = targetStack[targetStack.size() - 1];
 
@@ -201,7 +213,6 @@ void Board::AttemptColumnMove(int from, int to)
     });
     while(numberMoved--) sourceStack.pop_back();
 
-    // Reveal topmost card
     RevealTopMostCard(sourceStack);
 }
 
@@ -242,6 +253,9 @@ std::vector<Card> &Board::GetSourceBoardStack(int stackID)
 void Board::PromoteToFoundation(char option) {
 
     std::vector<Card>& sourceBoardStack = GetSourceBoardStack(static_cast<int>(option - '0'));
+
+    // Do nothing if source stack is empty
+    if (sourceBoardStack.size() == 0) return;
 
     // Get the corresponding foundation
     std::vector<Card>& foundation = GetFoundation(sourceBoardStack.back());
