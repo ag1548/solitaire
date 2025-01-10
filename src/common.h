@@ -2,4 +2,4 @@
 
 #include <string>
 
-void GameAbort(std::string);
+[[noreturn]] void GameAbort(std::string);
