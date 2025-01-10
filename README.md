@@ -25,6 +25,7 @@ or
 - Does not have a scoring system
 - Does not support moving "sub-columns" of cards (ie. column moves are all or nothing)
 - Would be cool to `tee` out to keep logs of played games :)
+  - (Color on the terminal also gets `tee`'ed out)
 - Support curses so that we don't have to hit enter after every command?
 
 <p align="center"><img src="./images/Demo1.png" alt="Demo1.png"/></p>
