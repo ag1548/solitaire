@@ -23,7 +23,11 @@ bool Card::operator==(const Card &other)
 char Card::GetSuit() const { return suit; }
 
 std::ostream &operator<<(std::ostream &os, const Card &card) {
-  os << card.GetFace() << " of " << card.GetSuit();
+  if (card.GetSuit() == 'D' or card.GetSuit() == 'H') {
+    os << "\033[7m" << card.GetFace() << " of " << card.GetSuit() << "\033[0m";
+  } else {
+    os << card.GetFace() << " of " << card.GetSuit();
+  }
   return os;
 }
 
