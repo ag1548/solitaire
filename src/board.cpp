@@ -292,14 +292,9 @@ void Board::PromoteToFoundation(char option) {
 }
 
 bool Board::CheckWinCondition() const {
-    if (foundation_S.size() > 0 and foundation_S.back().GetFace() == FACE_K and //
-        foundation_C.size() > 0 and foundation_C.back().GetFace() == FACE_K and //
-        foundation_H.size() > 0 and foundation_H.back().GetFace() == FACE_K and //
-        foundation_D.size() > 0 and foundation_D.back().GetFace() == FACE_K) {
-        return true;
-    }
-
-    return false;
+    return std::all_of(foundationStacks.begin(), foundationStacks.end(), [&](auto s) {
+        return s.get().size() > 0 and s.get().back().GetFace() == FACE_K;
+    });
 }
 
 void Board::PrintBoard() const {
