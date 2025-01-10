@@ -275,10 +275,10 @@ void Board::PromoteToFoundation(char option) {
 bool Board::CheckWinCondition() const
 {
     if (
-        foundation_S.size() > 0 and foundation_S.back().GetSuit() == 'K' &&
-        foundation_C.size() > 0 and foundation_C.back().GetSuit() == 'K' &&
-        foundation_H.size() > 0 and foundation_H.back().GetSuit() == 'K' &&
-        foundation_D.size() > 0 and foundation_D.back().GetSuit() == 'K'
+        foundation_S.size() > 0 and foundation_S.back().GetFace() == 'K' &&
+        foundation_C.size() > 0 and foundation_C.back().GetFace() == 'K' &&
+        foundation_H.size() > 0 and foundation_H.back().GetFace() == 'K' &&
+        foundation_D.size() > 0 and foundation_D.back().GetFace() == 'K'
     ) return true;
 
     return false;
