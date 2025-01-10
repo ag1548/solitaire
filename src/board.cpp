@@ -256,17 +256,20 @@ void Board::PromoteToFoundation(char option) {
     if (foundation.empty() and sourceBoardStack.back().GetFace() == 'A') {
         foundation.push_back(sourceBoardStack.back());
         sourceBoardStack.pop_back();
-    } else {
-        // All the others
-        int indexOfFoundationTopFace = GetIndexOfFace(foundation.back().GetFace());
-        int indexOfCardFace = GetIndexOfFace(sourceBoardStack.back().GetFace());
-        if (indexOfFoundationTopFace == indexOfCardFace - 1) {
-            foundation.push_back(sourceBoardStack.back());
-            sourceBoardStack.pop_back();
-        }
-    }
+        RevealTopMostCard(sourceBoardStack);
+        return;
+    } 
+    
+    if (foundation.empty()) return;
 
-    RevealTopMostCard(sourceBoardStack);
+    // All the others
+    int indexOfFoundationTopFace = GetIndexOfFace(foundation.back().GetFace());
+    int indexOfCardFace = GetIndexOfFace(sourceBoardStack.back().GetFace());
+    if (indexOfFoundationTopFace == indexOfCardFace - 1) {
+        foundation.push_back(sourceBoardStack.back());
+        sourceBoardStack.pop_back();
+        RevealTopMostCard(sourceBoardStack);
+    }
 }
 
 bool Board::CheckWinCondition() const
