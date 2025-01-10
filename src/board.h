@@ -1,31 +1,35 @@
 #pragma once
 
-#include <stack>
+#include <vector>
 
 #include "deck.h"
+#include "card.h"
 
 class Board
 {
 public:
     explicit Board();
 
+    void PromoteToFoundation(std::vector<Card>);
+
     void PrintBoard() const;
 private:
     Deck deck;
 
-    std::stack<Card> drawPile;
-    std::stack<Card> discardPile;
+    std::vector<Card> drawPile;
+    std::vector<Card> discardPile;
     
-    std::stack<Card> foundation_S;
-    std::stack<Card> foundation_C;
-    std::stack<Card> foundation_D;
-    std::stack<Card> foundation_H;
+    std::vector<Card>& GetFoundation(const Card&);
+    std::vector<Card> foundation_S;
+    std::vector<Card> foundation_C;
+    std::vector<Card> foundation_D;
+    std::vector<Card> foundation_H;
 
-    std::stack<Card> boardStack_0;
-    std::stack<Card> boardStack_1;
-    std::stack<Card> boardStack_2;
-    std::stack<Card> boardStack_3;
-    std::stack<Card> boardStack_4;
-    std::stack<Card> boardStack_5;
-    std::stack<Card> boardStack_6;
+    std::vector<Card> boardStack_0;
+    std::vector<Card> boardStack_1;
+    std::vector<Card> boardStack_2;
+    std::vector<Card> boardStack_3;
+    std::vector<Card> boardStack_4;
+    std::vector<Card> boardStack_5;
+    std::vector<Card> boardStack_6;
 };
