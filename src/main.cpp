@@ -1,15 +1,8 @@
 #include <iostream>
 
-#include "deck.h"
+#include "game.h"
 
 int main() {
-  Deck deck;
-
-  deck.PrintDeck();
-  deck.Shuffle();
-  deck.PrintDeck();
-  deck.Shuffle();
-  deck.PrintDeck();
-
+  Game g;
   return 0;
 }
