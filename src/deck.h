@@ -11,6 +11,8 @@ public:
 
   void Shuffle();
 
+  Card DrawCard();
+
   void PrintDeck() const;
 
 private:
