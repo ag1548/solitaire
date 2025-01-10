@@ -79,7 +79,6 @@ void Board::MoveColumn() {
     }
 
     if (from == 0) {
-        // Move from the discard pile
         AttemptMoveFromDiscardPile(to);
     } else {
         AttemptColumnMove(from, to);
