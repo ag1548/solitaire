@@ -27,11 +27,11 @@ or
 - Would be cool to `tee` out to keep logs of played games :)
 - Support curses so that we don't have to hit enter after every command?
 
-<p align="center"><img src="./images/Demo1.png" /></p>
-<p align="center"><img src="./images/Demo2.png" /></p>
-<p align="center"><img src="./images/Demo3.png" /></p>
-<p align="center"><img src="./images/Demo4.png" /></p>
-<p align="center"><img src="./images/Demo5.png" /></p>
-<p align="center"><img src="./images/Demo6.png" /></p>
-<p align="center"><img src="./images/Demo7.png" /></p>
-<p align="center"><img src="./images/Demo8.png" /></p>
+<p align="center"><img src="./images/Demo1.png" alt="Demo1.png"/></p>
+<p align="center"><img src="./images/Demo2.png" alt="Demo2.png"/></p>
+<p align="center"><img src="./images/Demo3.png" alt="Demo3.png"/></p>
+<p align="center"><img src="./images/Demo4.png" alt="Demo4.png"/></p>
+<p align="center"><img src="./images/Demo5.png" alt="Demo5.png"/></p>
+<p align="center"><img src="./images/Demo6.png" alt="Demo6.png"/></p>
+<p align="center"><img src="./images/Demo7.png" alt="Demo7.png"/></p>
+<p align="center"><img src="./images/Demo8.png" alt="Demo8.png"/></p>
