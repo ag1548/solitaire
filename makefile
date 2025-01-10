@@ -3,9 +3,8 @@
 run: compile
 	./solitaire
 
-compile: *.cpp
-	g++ -o solitaire *.cpp
+compile: src/*.cpp
+	g++ -o solitaire src/*.cpp
 
 clean:
-	@-rm *.o
 	@-rm solitaire
