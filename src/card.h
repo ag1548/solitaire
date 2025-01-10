@@ -4,28 +4,47 @@
 #include <array>
 #include <iostream>
 
+const char SUIT_S = 'S';
+const char SUIT_C = 'C';
+const char SUIT_H = 'H';
+const char SUIT_D = 'D';
+
+const char FACE_A = 'A';
+const char FACE_2 = '2';
+const char FACE_3 = '3';
+const char FACE_4 = '4';
+const char FACE_5 = '5';
+const char FACE_6 = '6';
+const char FACE_7 = '7';
+const char FACE_8 = '8';
+const char FACE_9 = '9';
+const char FACE_0 = '0';
+const char FACE_J = 'J';
+const char FACE_Q = 'Q';
+const char FACE_K = 'K';
+
 const std::array<char, 4> Suits = {
-    'S',
-    'C',
-    'H',
-    'D',
+    SUIT_S,
+    SUIT_C,
+    SUIT_H,
+    SUIT_D,
 };
 int GetIndexOfSuit(char s);
 
 const std::array<char, 13> Faces = {
-    'A',
-    '2',
-    '3',
-    '4',
-    '5',
-    '6',
-    '7',
-    '8',
-    '9',
-    '0',
-    'J',
-    'Q',
-    'K',
+    FACE_A,
+    FACE_2,
+    FACE_3,
+    FACE_4,
+    FACE_5,
+    FACE_6,
+    FACE_7,
+    FACE_8,
+    FACE_9,
+    FACE_0,
+    FACE_J,
+    FACE_Q,
+    FACE_K,
 };
 int GetIndexOfFace(char f);
 

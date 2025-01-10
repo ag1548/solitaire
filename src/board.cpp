@@ -131,7 +131,7 @@ void Board::AttemptMoveFromDiscardPile(int to) {
     // Get the "from" card
     Card &fromCard = discardPile.back();
 
-    if (fromCard.GetFace() == 'K') {
+    if (fromCard.GetFace() == FACE_K) {
         // If moving a king, ensure that the target stack is empty
         std::vector<Card> &targetStack = GetSourceBoardStack(to);
         if (targetStack.size() > 0) {
@@ -144,7 +144,7 @@ void Board::AttemptMoveFromDiscardPile(int to) {
         return;
     }
 
-    // NOTE: Card is not a 'K'
+    // NOTE: Card is not a FACE_K
 
     // In the "to" column, get the "bottom-most" revealed card
     std::vector<Card> &targetStack = GetSourceBoardStack(to);
@@ -197,7 +197,7 @@ void Board::AttemptColumnMove(int from, int to) {
 
     // The only card that can move to empty columns are kings
     if (targetStack.size() == 0) {
-        if (fromCard.GetFace() != 'K') {
+        if (fromCard.GetFace() != FACE_K) {
             return;
         }
 
@@ -242,13 +242,13 @@ void Board::AttemptColumnMove(int from, int to) {
 
 std::vector<Card> &Board::GetFoundation(const Card &c) {
     switch (c.GetSuit()) {
-        case 'S':
+        case SUIT_S:
             return foundation_S;
-        case 'C':
+        case SUIT_C:
             return foundation_C;
-        case 'H':
+        case SUIT_H:
             return foundation_H;
-        case 'D':
+        case SUIT_D:
             return foundation_D;
     }
 
@@ -292,7 +292,7 @@ void Board::PromoteToFoundation(char option) {
     std::vector<Card> &foundation = GetFoundation(sourceBoardStack.back());
 
     // Initial card
-    if (foundation.empty() and sourceBoardStack.back().GetFace() == 'A') {
+    if (foundation.empty() and sourceBoardStack.back().GetFace() == FACE_A) {
         foundation.push_back(sourceBoardStack.back());
         sourceBoardStack.pop_back();
         RevealTopMostCard(sourceBoardStack);
@@ -314,10 +314,10 @@ void Board::PromoteToFoundation(char option) {
 }
 
 bool Board::CheckWinCondition() const {
-    if (foundation_S.size() > 0 and foundation_S.back().GetFace() == 'K' and //
-        foundation_C.size() > 0 and foundation_C.back().GetFace() == 'K' and //
-        foundation_H.size() > 0 and foundation_H.back().GetFace() == 'K' and //
-        foundation_D.size() > 0 and foundation_D.back().GetFace() == 'K') {
+    if (foundation_S.size() > 0 and foundation_S.back().GetFace() == FACE_K and //
+        foundation_C.size() > 0 and foundation_C.back().GetFace() == FACE_K and //
+        foundation_H.size() > 0 and foundation_H.back().GetFace() == FACE_K and //
+        foundation_D.size() > 0 and foundation_D.back().GetFace() == FACE_K) {
         return true;
     }
 
