@@ -8,53 +8,31 @@
 Board::Board() {
     // NOTE: Setup test scenarios here simply
     //       by making Card(<suit>, <face>) and
-    //       Adding them to the particular stack
+    //       adding them to the particular stack.
+    //       Otherwise, the board is setup
+    //       according to the logic below.
+
+    // Establish references to all the boards' bottom stacks
+    boardStacks = {
+        boardStack_0,
+        boardStack_1,
+        boardStack_2,
+        boardStack_3,
+        boardStack_4,
+        boardStack_5,
+        boardStack_6,
+    };
 
     // Shuffle the deck
     deck.Shuffle();
 
     // Populate the board stacks
-    boardStack_0.push_back(deck.DrawCard());
-    boardStack_0[0].Reveal();
-
-    boardStack_1.push_back(deck.DrawCard());
-    boardStack_1.push_back(deck.DrawCard());
-    boardStack_1[1].Reveal();
-
-    boardStack_2.push_back(deck.DrawCard());
-    boardStack_2.push_back(deck.DrawCard());
-    boardStack_2.push_back(deck.DrawCard());
-    boardStack_2[2].Reveal();
-
-    boardStack_3.push_back(deck.DrawCard());
-    boardStack_3.push_back(deck.DrawCard());
-    boardStack_3.push_back(deck.DrawCard());
-    boardStack_3.push_back(deck.DrawCard());
-    boardStack_3[3].Reveal();
-
-    boardStack_4.push_back(deck.DrawCard());
-    boardStack_4.push_back(deck.DrawCard());
-    boardStack_4.push_back(deck.DrawCard());
-    boardStack_4.push_back(deck.DrawCard());
-    boardStack_4.push_back(deck.DrawCard());
-    boardStack_4[4].Reveal();
-
-    boardStack_5.push_back(deck.DrawCard());
-    boardStack_5.push_back(deck.DrawCard());
-    boardStack_5.push_back(deck.DrawCard());
-    boardStack_5.push_back(deck.DrawCard());
-    boardStack_5.push_back(deck.DrawCard());
-    boardStack_5.push_back(deck.DrawCard());
-    boardStack_5[5].Reveal();
-
-    boardStack_6.push_back(deck.DrawCard());
-    boardStack_6.push_back(deck.DrawCard());
-    boardStack_6.push_back(deck.DrawCard());
-    boardStack_6.push_back(deck.DrawCard());
-    boardStack_6.push_back(deck.DrawCard());
-    boardStack_6.push_back(deck.DrawCard());
-    boardStack_6.push_back(deck.DrawCard());
-    boardStack_6[6].Reveal();
+    for (int i = 0; i < 7; i++) {
+        for (int j = 0; j < i + 1; j++) {
+            boardStacks[i].get().push_back(deck.DrawCard());
+        }
+        boardStacks[i].get().back().Reveal();
+    }
 
     // Put the rest in the draw pile
     while (!deck.isEmpty()) {
@@ -386,90 +364,22 @@ void Board::PrintBoard() const {
     int index = 0;
     for (;;) {
 
-        // boardStack_0
-        if (boardStack_0.size() == 0 and index == 0) {
-            std::cout << "[" << std::setw(6) << '-' << "]";
-        } else if (index >= boardStack_0.size()) {
-            std::cout << " " << std::setw(6) << ' ' << " ";
-        } else if (boardStack_0[index].isRevealed()) {
-            std::cout << "[" << boardStack_0[index] << "]";
-        } else if (!boardStack_0[index].isRevealed()) {
-            std::cout << "[" << std::setw(6) << '*' << "]";
+        // Render each line
+        for (int i = 0; i < 7; i++) {
+            if (boardStacks[i].get().size() == 0 and index == 0) {
+                std::cout << "[" << std::setw(6) << '-' << "]";
+            } else if (index >= boardStacks[i].get().size()) {
+                std::cout << " " << std::setw(6) << ' ' << " ";
+            } else if (boardStacks[i].get()[index].isRevealed()) {
+                std::cout << "[" << boardStacks[i].get()[index] << "]";
+            } else if (!boardStacks[i].get()[index].isRevealed()) {
+                std::cout << "[" << std::setw(6) << '*' << "]";
+            }
         }
 
-        // boardStack_1
-        if (boardStack_1.size() == 0 and index == 0) {
-            std::cout << "[" << std::setw(6) << '-' << "]";
-        } else if (index >= boardStack_1.size()) {
-            std::cout << " " << std::setw(6) << ' ' << " ";
-        } else if (boardStack_1[index].isRevealed()) {
-            std::cout << "[" << boardStack_1[index] << "]";
-        } else if (!boardStack_1[index].isRevealed()) {
-            std::cout << "[" << std::setw(6) << '*' << "]";
-        }
-
-        // boardStack_2
-        if (boardStack_2.size() == 0 and index == 0) {
-            std::cout << "[" << std::setw(6) << '-' << "]";
-        } else if (index >= boardStack_2.size()) {
-            std::cout << " " << std::setw(6) << ' ' << " ";
-        } else if (boardStack_2[index].isRevealed()) {
-            std::cout << "[" << boardStack_2[index] << "]";
-        } else if (!boardStack_2[index].isRevealed()) {
-            std::cout << "[" << std::setw(6) << '*' << "]";
-        }
-
-        // boardStack_3
-        if (boardStack_3.size() == 0 and index == 0) {
-            std::cout << "[" << std::setw(6) << '-' << "]";
-        } else if (index >= boardStack_3.size()) {
-            std::cout << " " << std::setw(6) << ' ' << " ";
-        } else if (boardStack_3[index].isRevealed()) {
-            std::cout << "[" << boardStack_3[index] << "]";
-        } else if (!boardStack_3[index].isRevealed()) {
-            std::cout << "[" << std::setw(6) << '*' << "]";
-        }
-
-        // boardStack_4
-        if (boardStack_4.size() == 0 and index == 0) {
-            std::cout << "[" << std::setw(6) << '-' << "]";
-        } else if (index >= boardStack_4.size()) {
-            std::cout << " " << std::setw(6) << ' ' << " ";
-        } else if (boardStack_4[index].isRevealed()) {
-            std::cout << "[" << boardStack_4[index] << "]";
-        } else if (!boardStack_4[index].isRevealed()) {
-            std::cout << "[" << std::setw(6) << '*' << "]";
-        }
-
-        // boardStack_5
-        if (boardStack_5.size() == 0 and index == 0) {
-            std::cout << "[" << std::setw(6) << '-' << "]";
-        } else if (index >= boardStack_5.size()) {
-            std::cout << " " << std::setw(6) << ' ' << " ";
-        } else if (boardStack_5[index].isRevealed()) {
-            std::cout << "[" << boardStack_5[index] << "]";
-        } else if (!boardStack_5[index].isRevealed()) {
-            std::cout << "[" << std::setw(6) << '*' << "]";
-        }
-
-        // boardStack_6
-        if (boardStack_6.size() == 0 and index == 0) {
-            std::cout << "[" << std::setw(6) << '-' << "]";
-        } else if (index >= boardStack_6.size()) {
-            std::cout << " " << std::setw(6) << ' ' << " ";
-        } else if (boardStack_6[index].isRevealed()) {
-            std::cout << "[" << boardStack_6[index] << "]";
-        } else if (!boardStack_6[index].isRevealed()) {
-            std::cout << "[" << std::setw(6) << '*' << "]";
-        }
-
-        if ((index >= boardStack_0.size()) and //
-            (index >= boardStack_1.size()) and //
-            (index >= boardStack_2.size()) and //
-            (index >= boardStack_3.size()) and //
-            (index >= boardStack_4.size()) and //
-            (index >= boardStack_5.size()) and //
-            (index >= boardStack_6.size())) {
+        if (std::all_of(boardStacks.begin(), boardStacks.end(), [&](auto stack) {
+                return index >= stack.get().size();
+            })) {
             break;
         }
 
@@ -478,7 +388,8 @@ void Board::PrintBoard() const {
         index++;
     }
 
-    // Print minimum 13 lines for somewhat-consistent printing
+    // NOTE: Prints minimum 13 lines for somewhat-consistent printing;
+    //       ie, lessens "console movement"
     while (index++ <= 13) {
         std::cout << std::endl;
     }

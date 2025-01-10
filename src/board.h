@@ -34,14 +34,15 @@ private:
     std::vector<Card>  foundation_D;
     std::vector<Card>  foundation_H;
 
-    std::vector<Card> &GetSourceBoardStack(int);
-    std::vector<Card>  boardStack_0;
-    std::vector<Card>  boardStack_1;
-    std::vector<Card>  boardStack_2;
-    std::vector<Card>  boardStack_3;
-    std::vector<Card>  boardStack_4;
-    std::vector<Card>  boardStack_5;
-    std::vector<Card>  boardStack_6;
+    std::vector<std::reference_wrapper<std::vector<Card>>> boardStacks;
+    std::vector<Card>                                     &GetSourceBoardStack(int);
+    std::vector<Card>                                      boardStack_0;
+    std::vector<Card>                                      boardStack_1;
+    std::vector<Card>                                      boardStack_2;
+    std::vector<Card>                                      boardStack_3;
+    std::vector<Card>                                      boardStack_4;
+    std::vector<Card>                                      boardStack_5;
+    std::vector<Card>                                      boardStack_6;
 
     void RevealTopMostCard(std::vector<Card> &);
     void AttemptMoveFromDiscardPile(int);
