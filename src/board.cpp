@@ -6,64 +6,57 @@
 
 Board::Board()
 {
-//   // Shuffle the deck
-//   deck.Shuffle();
+  // Shuffle the deck
+  deck.Shuffle();
 
-//   // Populate the board stacks
-//   boardStack_0.push_back(deck.DrawCard());
-//   boardStack_0[0].Reveal();
+  // Populate the board stacks
+  boardStack_0.push_back(deck.DrawCard());
+  boardStack_0[0].Reveal();
   
-//   boardStack_1.push_back(deck.DrawCard());
-//   boardStack_1.push_back(deck.DrawCard());
-//   boardStack_1[1].Reveal();
+  boardStack_1.push_back(deck.DrawCard());
+  boardStack_1.push_back(deck.DrawCard());
+  boardStack_1[1].Reveal();
 
-//   boardStack_2.push_back(deck.DrawCard());
-//   boardStack_2.push_back(deck.DrawCard());
-//   boardStack_2.push_back(deck.DrawCard());
-//   boardStack_2[2].Reveal();
+  boardStack_2.push_back(deck.DrawCard());
+  boardStack_2.push_back(deck.DrawCard());
+  boardStack_2.push_back(deck.DrawCard());
+  boardStack_2[2].Reveal();
 
-//   boardStack_3.push_back(deck.DrawCard());
-//   boardStack_3.push_back(deck.DrawCard());
-//   boardStack_3.push_back(deck.DrawCard());
-//   boardStack_3.push_back(deck.DrawCard());
-//   boardStack_3[3].Reveal();
+  boardStack_3.push_back(deck.DrawCard());
+  boardStack_3.push_back(deck.DrawCard());
+  boardStack_3.push_back(deck.DrawCard());
+  boardStack_3.push_back(deck.DrawCard());
+  boardStack_3[3].Reveal();
 
-//   boardStack_4.push_back(deck.DrawCard());
-//   boardStack_4.push_back(deck.DrawCard());
-//   boardStack_4.push_back(deck.DrawCard());
-//   boardStack_4.push_back(deck.DrawCard());
-//   boardStack_4.push_back(deck.DrawCard());
-//   boardStack_4[4].Reveal();
+  boardStack_4.push_back(deck.DrawCard());
+  boardStack_4.push_back(deck.DrawCard());
+  boardStack_4.push_back(deck.DrawCard());
+  boardStack_4.push_back(deck.DrawCard());
+  boardStack_4.push_back(deck.DrawCard());
+  boardStack_4[4].Reveal();
 
-//   boardStack_5.push_back(deck.DrawCard());
-//   boardStack_5.push_back(deck.DrawCard());
-//   boardStack_5.push_back(deck.DrawCard());
-//   boardStack_5.push_back(deck.DrawCard());
-//   boardStack_5.push_back(deck.DrawCard());
-//   boardStack_5.push_back(deck.DrawCard());
-//   boardStack_5[5].Reveal();
+  boardStack_5.push_back(deck.DrawCard());
+  boardStack_5.push_back(deck.DrawCard());
+  boardStack_5.push_back(deck.DrawCard());
+  boardStack_5.push_back(deck.DrawCard());
+  boardStack_5.push_back(deck.DrawCard());
+  boardStack_5.push_back(deck.DrawCard());
+  boardStack_5[5].Reveal();
 
-//   boardStack_6.push_back(deck.DrawCard());
-//   boardStack_6.push_back(deck.DrawCard());
-//   boardStack_6.push_back(deck.DrawCard());
-//   boardStack_6.push_back(deck.DrawCard());
-//   boardStack_6.push_back(deck.DrawCard());
-//   boardStack_6.push_back(deck.DrawCard());
-//   boardStack_6.push_back(deck.DrawCard());
-//   boardStack_6[6].Reveal();
+  boardStack_6.push_back(deck.DrawCard());
+  boardStack_6.push_back(deck.DrawCard());
+  boardStack_6.push_back(deck.DrawCard());
+  boardStack_6.push_back(deck.DrawCard());
+  boardStack_6.push_back(deck.DrawCard());
+  boardStack_6.push_back(deck.DrawCard());
+  boardStack_6.push_back(deck.DrawCard());
+  boardStack_6[6].Reveal();
 
-//   // Put the rest in the draw pile
-//   while (!deck.isEmpty()) {
-//     drawPile.push_back(deck.DrawCard());
-//     drawPile.back().Reveal();
-//   }
-    Card k('S', 'K');
-    k.Reveal();
-    drawPile.push_back(k);
-
-    Card q('D', 'Q');
-    q.Reveal();
-    boardStack_6.push_back(q);
+  // Put the rest in the draw pile
+  while (!deck.isEmpty()) {
+    drawPile.push_back(deck.DrawCard());
+    drawPile.back().Reveal();
+  }
 }
 
 void Board::DrawCardOrResetDrawPile()
@@ -72,7 +65,6 @@ void Board::DrawCardOrResetDrawPile()
         ResetDrawPile();
     } else {
         DrawCard();
-        PrintBoard();
     }
 }
 
@@ -275,6 +267,18 @@ void Board::PromoteToFoundation(char option) {
     }
 
     RevealTopMostCard(sourceBoardStack);
+}
+
+bool Board::CheckWinCondition() const
+{
+    if (
+        foundation_S.size() > 0 and foundation_S.back().GetSuit() == 'K' &&
+        foundation_C.size() > 0 and foundation_C.back().GetSuit() == 'K' &&
+        foundation_H.size() > 0 and foundation_H.back().GetSuit() == 'K' &&
+        foundation_D.size() > 0 and foundation_D.back().GetSuit() == 'K'
+    ) return true;
+
+    return false;
 }
 
 void Board::PrintBoard() const

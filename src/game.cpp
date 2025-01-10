@@ -21,10 +21,11 @@ static void PrintMenu(const Board& board) {
 
 Game::Game() {
 
+  system("clear");
+
   Board board;
   char option;
   for(;;) {
-    system("clear");
     board.PrintBoard();
     PrintMenu(board);
 
@@ -48,5 +49,10 @@ Game::Game() {
         }
         break;
     }
+
+    std::cout << "***************************************************************" << std::endl;
+    if (board.CheckWinCondition()) break;
   }
+
+  std::cout << "************ YOU WIN! ************" << std::endl;
 }

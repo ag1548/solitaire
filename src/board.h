@@ -19,6 +19,8 @@ public:
 
     void PromoteToFoundation(char option);
 
+    bool CheckWinCondition() const;
+
     void PrintBoard() const;
 private:
     Deck deck;
