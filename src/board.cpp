@@ -128,15 +128,20 @@ void Board::PromoteToFoundation(char option) {
     if (foundation.empty() and sourceBoardStack.back().GetFace() == 'A') {
         foundation.push_back(sourceBoardStack.back());
         sourceBoardStack.pop_back();
-        return;
-    } 
+    } else {
+        // All the others
+        int indexOfFoundationTopFace = GetIndexOfFace(foundation.back().GetFace());
+        int indexOfCardFace = GetIndexOfFace(sourceBoardStack.back().GetFace());
+        if (indexOfFoundationTopFace == indexOfCardFace - 1) {
+            foundation.push_back(sourceBoardStack.back());
+            sourceBoardStack.pop_back();
+        }
+    }
 
-    // All the others
-    int indexOfFoundationTopFace = GetIndexOfFace(foundation.back().GetFace());
-    int indexOfCardFace = GetIndexOfFace(sourceBoardStack.back().GetFace());
-    if (indexOfFoundationTopFace == indexOfCardFace - 1) {
-        foundation.push_back(sourceBoardStack.back());
-        sourceBoardStack.pop_back();
+    // Reveal the top most card of the boardStack
+    // NOTE: Cards in the draw/discard pile are already revealed
+    if (sourceBoardStack.size() > 0) {
+        sourceBoardStack.back().Reveal();
     }
 }
 
