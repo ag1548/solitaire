@@ -1,6 +1,7 @@
 #include <algorithm>
 #include <iomanip>
 #include <random>
+#include <ranges>
 
 #include "board.h"
 #include "common.h"
@@ -40,9 +41,9 @@ void Board::DrawCardOrResetDrawPile() {
 }
 
 void Board::ResetDrawPile() {
-    std::for_each(discardPile.rbegin(), discardPile.rend(), [&](Card c) {
+    for (auto &c : std::ranges::reverse_view(discardPile)) {
         drawPile.push_back(c);
-    });
+    }
     discardPile.clear();
 }
 
