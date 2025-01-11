@@ -12,24 +12,6 @@ Board::Board() {
     //       Otherwise, the board is setup
     //       according to the logic below.
 
-    // Establish references to all the boards' bottom stacks
-    foundationStacks = {
-        foundation_S,
-        foundation_C,
-        foundation_D,
-        foundation_H,
-    };
-
-    boardStacks = {
-        boardStack_0,
-        boardStack_1,
-        boardStack_2,
-        boardStack_3,
-        boardStack_4,
-        boardStack_5,
-        boardStack_6,
-    };
-
     // Shuffle the deck
     deck.Shuffle();
 
