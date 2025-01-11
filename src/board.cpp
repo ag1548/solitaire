@@ -302,13 +302,13 @@ void Board::PrintBoard() const {
     std::cout << std::setw(8) << " ";
 
     // Render foundations
-    std::for_each(foundationStacks.begin(), foundationStacks.end(), [&](auto s) {
+    for (auto &s : foundationStacks) {
         if (s.get().size() > 0) {
             std::cout << "[" << s.get().back() << "]";
         } else {
             std::cout << "[" << std::setw(6) << '-' << "]";
         }
-    });
+    }
 
     std::cout << std::endl << std::endl;
 
