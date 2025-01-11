@@ -213,6 +213,7 @@ std::vector<Card> &Board::GetFoundation(const Card &c) {
             return foundation_D;
     }
 
+    // TODO: Take this into account
     GameAbort(std::string("Invalid suit for foundation fetch: ") + c.GetSuit());
 }
 
